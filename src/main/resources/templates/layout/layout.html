@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head th:fragment="fragment-header">
+        <title>블로그</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+        <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
+    </head>
+
+    <div class="container">
+        <div class="card m-2" th:each="board : ${boards.content}">
+            <div class="card-body">
+                <h4 class="card-title" th:text="${board.getTitle()}">제목</h4>
+                <strong th:text="|작성자 : ${board.getUser().getUsername()}|">작성자 : ㅇㅇ</strong>
+                <p th:text="|작성날짜 : ${board.createDate}|"></p>
+                <p th:text="|조회수 : ${board.getCount()}|">조회수 : 3</p>
+                <a th:href="@{/board/{id}(id=${board.getId()})}" class="btn btn-primary">상세보기</a>
+            </div>
+        </div>
+    </div>
+
+    <footer th:fragment="fragment-footer">
+        <br>
+        <div class="jumbotron text-center" style="margin-top:0">
+            <p>Created by sweets1327</p>
+            <a href="https://sweets1327.tistory.com/" target="_blank" style="text-decoration:none; color: black">🔗 Blog</a><br>
+            <a href="https://github.com/katydidya92" target="_blank" style="text-decoration:none; color: black">🔗 Github</a>
+        </div>
+    </footer>
+</html>
