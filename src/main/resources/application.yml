@@ -5,6 +5,11 @@ spring:
   devtools:
     livereload:
       enabled: true
+  http:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
 
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -12,11 +17,23 @@ spring:
     username: root
     password: 1234
 
+#  jpa:
+#    hibernate:
+##      ddl-auto: create
+#      ddl-auto: update
+#    database-platform: org.hibernate.dialect.MySQL8Dialect
+#    properties:
+#      hibernate:
+#        format_sql: true
+#        show_sql: true
+
   jpa:
+    open-in-view: true
     hibernate:
-      ddl-auto: create
-    database-platform: org.hibernate.dialect.MySQL8Dialect
+      ddl-auto: update
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+      use-new-id-generator-mappings: false
+    show-sql: true
     properties:
-      hibernate:
-        format_sql: true
-        show_sql: true
+      hibernate.format_sql: true

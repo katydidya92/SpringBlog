@@ -4,7 +4,7 @@
     <div th:replace="/layout/layout.html :: fragment-header"></div>
 </head>
 <body>
-<!--<div th:replace="/layout/layout.html :: fragment-nav"></div>-->
+<div th:replace="/layout/layout.html :: fragment-nav"></div>
 
 <div class="container">
     <form action="/auth/loginProc" method="post">
@@ -18,10 +18,17 @@
             <input type="password" name="password" class="form-control" placeholder="Enter password" id="password">
         </div>
 
+<!--        remember me-->
+<!--        <div class="form-group form-check">-->
+<!--            <label class="form-check-label">-->
+<!--                <input type="checkbox" name="remember" class="form-check-input"> Remember me-->
+<!--            </label>-->
+<!--        </div>-->
+
         <button id="btn-login" class="btn btn-primary">로그인</button>
 <!--        <a href="https://kauth.kakao.com/oauth/authorize?client_id=19bc8b342e4af553e0ec5456a5c82bde&redirect_uri=http://localhost:8080/auth/kakao/callback&response_type=code"></a>-->
     </form>
-    <script src="/js/user.js"></script>
+<!--    <script src="/js/user.js"></script>-->
 </div>
 <footer th:replace="/layout/layout.html :: fragment-footer"></footer>
 </body>
