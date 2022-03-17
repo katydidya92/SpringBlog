@@ -45,6 +45,14 @@ public class UserService {
         return user;
     }
 
+    public void update(User user) {
+        User findUser = userRepository.findById(user.getId()).orElseThrow(() -> new IllegalArgumentException("회원 찾기 실패"));
+        String rawPassword = user.getPassword();
+        String encPassword = encoder.encode(rawPassword);
+        findUser.setPassword(encPassword);
+        findUser.setEmail(user.getEmail());
+    }
+
 //    @Transactional(readOnly = true)
 //    public User login(User user) {
 //        return userRepository.findByUsernameAndPassword(user.getUsername(), user.getPassword());
