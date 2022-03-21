@@ -1,8 +1,10 @@
 package com.blog.service;
 
 import com.blog.model.Board;
+import com.blog.model.Reply;
 import com.blog.model.User;
 import com.blog.repository.BoardRepository;
+import com.blog.repository.ReplyRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -17,6 +19,7 @@ import java.util.List;
 public class BoardService {
 
     private final BoardRepository boardRepository;
+    private final ReplyRepository replyRepository;
 
     @Transactional(readOnly = true)
     public List<Board> allBoard() {
@@ -63,6 +66,25 @@ public class BoardService {
         board.setTitle(requestBoard.getTitle());
         board.setContent(requestBoard.getContent());
         board.setCategory(requestBoard.getCategory());
+    }
+
+    @Transactional
+    public void replyWrite(User user, int boardId, Reply requestReply) {
+        Board board = boardRepository.findById(boardId)
+                .orElseThrow(() -> new IllegalArgumentException("댓글 쓰기 실패 : 게시글 ID를 찾을 수 없습니다."));
+        requestReply.setUser(user);
+        requestReply.setBoard(board);
+
+        replyRepository.save(requestReply);
+    }
+
+    public void replyDelete(int replyId) {
+        replyRepository.deleteById(replyId);
+    }
+
+    public User replyWriterCheck(int replyId) {
+        Reply reply = replyRepository.findById(replyId).orElseThrow(() -> new IllegalArgumentException("댓글 주인을 찾을 수 없습니다."));
+        return reply.getUser();
     }
 
 }
