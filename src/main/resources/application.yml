@@ -17,16 +17,6 @@ spring:
     username: root
     password: 1234
 
-#  jpa:
-#    hibernate:
-##      ddl-auto: create
-#      ddl-auto: update
-#    database-platform: org.hibernate.dialect.MySQL8Dialect
-#    properties:
-#      hibernate:
-#        format_sql: true
-#        show_sql: true
-
   jpa:
     open-in-view: true
     hibernate:
@@ -37,3 +27,10 @@ spring:
     show-sql: true
     properties:
       hibernate.format_sql: true
+
+  jackson:
+    serialization:
+      fail-on-empty-beans: false
+
+blog:
+  key: 111
